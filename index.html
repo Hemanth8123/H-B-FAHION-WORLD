@@ -123,6 +123,24 @@
       text-underline-offset: 4px;
     }
     .contact-links a:hover { color: var(--cream); }
+    .donate-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    .donate-button:hover, .donate-button:focus-visible {
+      background: var(--gold);
+      color: var(--night);
+    }
+    .donate-button:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
     .footer {
       position: absolute;
       right: 20px;
@@ -163,6 +181,7 @@
       <p>Follow us on Instagram: <a href="https://www.instagram.com/hbmensfashionworld/" target="_blank" rel="noopener noreferrer">@hbmensfashionworld</a></p>
       <p>To place an order, call or WhatsApp: <a href="tel:+916360505810">6360505810</a> · <a href="https://wa.me/916360505810" target="_blank" rel="noopener noreferrer">WhatsApp us</a></p>
     </div>
+    <a class="donate-button" href="https://donateushb.vercel.app/">Donate</a>
   </main>
   <footer class="footer">H&amp;B Fashion World&nbsp; · &nbsp;Made with intention</footer>
 </body>
