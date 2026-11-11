@@ -20,15 +20,11 @@
     }
 
     * { box-sizing: border-box; }
-    html { min-height: 100%; background: var(--night); }
+    html { min-height: 100%; background: var(--night); scroll-behavior: smooth; }
     body {
       position: relative;
-      display: grid;
-      min-height: 100svh;
       margin: 0;
-      overflow: hidden;
-      place-items: center;
-      padding: 32px 22px;
+      overflow-x: hidden;
       background:
         radial-gradient(ellipse at 50% 43%, #252116 0, #181711 28%, transparent 62%),
         var(--night);
@@ -50,6 +46,12 @@
       border: 1px solid #c8a96614;
       border-radius: 50%;
       box-shadow: 0 0 0 42px #c8a96608, 0 0 0 84px #c8a96605;
+    }
+    .hero {
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      padding: 32px 22px;
     }
     .page {
       position: relative;
@@ -107,10 +109,41 @@
       font-size: 12px;
       line-height: 1.9;
     }
+    .scroll-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .scroll-button:focus-visible {
+      outline: 2px solid var(--cream);
+      outline-offset: 6px;
+    }
+    .scroll-arrow {
+      display: inline-block;
+      font-size: 16px;
+      animation: bob 1.4s ease-in-out infinite;
+    }
+    .details {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      min-height: 65svh;
+      place-items: center;
+      padding: 70px 22px 90px;
+      border-top: 1px solid #c8a96627;
+      text-align: center;
+      scroll-margin-top: 20px;
+    }
     .contact-links {
       display: grid;
       gap: 14px;
-      margin-top: 28px;
       color: var(--muted);
       font-size: 11px;
       line-height: 1.8;
@@ -149,10 +182,9 @@
       line-height: 1.7;
     }
     .footer {
-      position: absolute;
-      right: 20px;
-      bottom: 8px;
-      left: 20px;
+      position: relative;
+      z-index: 1;
+      padding: 18px 20px 24px;
       color: #777267;
       font-size: 8px;
       letter-spacing: .12em;
@@ -163,33 +195,47 @@
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
     @media (max-width: 480px) {
-      body { padding: 26px 18px; }
+      .hero { padding: 26px 18px; }
       body::before { inset: 12px; }
       .page { padding: 30px 6px 70px; }
       .divider { margin: 32px auto 28px; }
       .message { max-width: 310px; font-size: 11px; }
-      .contact-links { margin-top: 23px; font-size: 10px; }
-      .footer { right: 24px; left: 24px; font-size: 7px; }
+      .contact-links { font-size: 10px; }
+      .footer { font-size: 7px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <img class="brand-logo" src="assets/hb-fashion-world-logo.png" alt="H and B Fashion World logo" width="422" height="143">
-    <div class="divider" aria-hidden="true">✦</div>
-    <p class="coming-soon">Street meets fashion</p>
-    <h1>Coming<br><em>soon.</em></h1>
-    <p class="message">We’re putting the finishing touches on something special. A world of thoughtful style is on its way.</p>
-    <div class="contact-links">
-      <p>Follow us on Instagram: <a href="https://www.instagram.com/hbmensfashionworld/" target="_blank" rel="noopener noreferrer">@hbmensfashionworld</a></p>
-      <p>To place an order, call or WhatsApp: <a href="tel:+916360505810">6360505810</a> · <a href="https://wa.me/916360505810" target="_blank" rel="noopener noreferrer">WhatsApp us</a></p>
-    </div>
-    <a class="donate-button" href="https://donateushb.vercel.app/">Donate</a>
-    <p class="donation-message">Your donation helps children access nourishing meals, learning resources, and a caring community—building a brighter future.</p>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="page">
+        <img class="brand-logo" src="assets/hb-fashion-world-logo.png" alt="H and B Fashion World logo" width="422" height="143">
+        <div class="divider" aria-hidden="true">✦</div>
+        <p class="coming-soon">Street meets fashion</p>
+        <h1 id="page-title">Coming<br><em>soon.</em></h1>
+        <p class="message">We’re putting the finishing touches on something special. A world of thoughtful style is on its way.</p>
+        <a class="scroll-button" href="#connect">Scroll to connect <span class="scroll-arrow" aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    <section class="details" id="connect" aria-label="Contact and support">
+      <div>
+        <div class="contact-links">
+          <p>Follow us on Instagram: <a href="https://www.instagram.com/hbmensfashionworld/" target="_blank" rel="noopener noreferrer">@hbmensfashionworld</a></p>
+          <p>To place an order, call or WhatsApp: <a href="tel:+916360505810">6360505810</a> · <a href="https://wa.me/916360505810" target="_blank" rel="noopener noreferrer">WhatsApp us</a></p>
+        </div>
+        <a class="donate-button" href="https://donateushb.vercel.app/">Donate</a>
+        <p class="donation-message">Your donation helps children access nourishing meals, learning resources, and a caring community—building a brighter future.</p>
+      </div>
+    </section>
   </main>
   <footer class="footer">H&amp;B Fashion World&nbsp; · &nbsp;Made with intention</footer>
 </body>
